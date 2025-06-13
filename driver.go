@@ -91,6 +91,13 @@ func Hash(hash func(query string, args []any) (Key, error)) Option {
 	}
 }
 
+// Log configures the Driver to use the given log function.
+func Log(fn func(...any)) Option {
+	return func(o *Options) {
+		o.Log = fn
+	}
+}
+
 // Levels configures the Driver to work with the given cache levels.
 // For example, in process LRU cache and a remote Redis cache.
 func Levels(levels ...AddGetDeleter) Option {
